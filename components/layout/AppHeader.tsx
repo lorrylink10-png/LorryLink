@@ -12,12 +12,12 @@ export function AppHeader({ roleLabel }: AppHeaderProps) {
       <div className="flex items-center justify-between gap-3">
         <Link href="/" className="relative h-12 w-28" aria-label="Lorry Link home">
           <Image
-            src="/logo.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
             alt="Lorry Link"
             fill
-            className="object-contain object-left"
-            sizes="112px"
+            className="object-contain"
             priority
+            sizes="144px"
           />
         </Link>
 
@@ -33,3 +33,4 @@ export function AppHeader({ roleLabel }: AppHeaderProps) {
     </header>
   );
 }
+

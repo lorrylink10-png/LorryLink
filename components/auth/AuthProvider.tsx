@@ -116,3 +116,4 @@ export function useAuth() {
 export function useAuthenticatedUser(): User | null {
   return useAuth().user;
 }
+

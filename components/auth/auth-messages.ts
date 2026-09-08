@@ -27,3 +27,4 @@ export function authErrorMessage(message?: string) {
 
   return "Unable to complete the request. Please try again.";
 }
+

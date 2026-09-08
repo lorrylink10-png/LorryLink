@@ -26,3 +26,4 @@ export function appUrl(path: string) {
 
   return `${window.location.origin}${withAppBasePath(path)}`;
 }
+

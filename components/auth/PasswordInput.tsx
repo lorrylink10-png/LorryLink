@@ -35,3 +35,4 @@ export function PasswordInput({ label, className, ...props }: PasswordInputProps
     </label>
   );
 }
+

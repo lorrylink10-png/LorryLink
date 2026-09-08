@@ -66,3 +66,4 @@ export function PickupCard({ order }: PickupCardProps) {
     </AppCard>
   );
 }
+

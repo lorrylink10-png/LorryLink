@@ -107,3 +107,4 @@ export function DriverPickupDetail({ order, lorries }: DriverPickupDetailProps) 
     </div>
   );
 }
+

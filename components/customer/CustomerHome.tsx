@@ -98,3 +98,4 @@ export function CustomerHome({ profileName, activeOrder, recentOrders }: Custome
     </div>
   );
 }
+

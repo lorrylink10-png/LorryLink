@@ -48,3 +48,4 @@ export function GoogleSignInButton({ onError }: GoogleSignInButtonProps) {
     </button>
   );
 }
+

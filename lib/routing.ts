@@ -21,3 +21,4 @@ export function driverDiscoverDetailHref(orderId: string) {
 export function driverJobHref(orderId: string) {
   return `/driver/job?id=${encodeURIComponent(orderId)}`;
 }
+

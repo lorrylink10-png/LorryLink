@@ -54,3 +54,4 @@ export function DriverJobCard({ job }: DriverJobCardProps) {
     </Link>
   );
 }
+

@@ -155,3 +155,4 @@ export function OrderDetail({ order, assignedLorry, created, cancelled }: OrderD
     </div>
   );
 }
+

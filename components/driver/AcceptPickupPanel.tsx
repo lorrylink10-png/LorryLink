@@ -177,3 +177,4 @@ export function AcceptPickupPanel({ order, lorries }: AcceptPickupPanelProps) {
     </AppCard>
   );
 }
+

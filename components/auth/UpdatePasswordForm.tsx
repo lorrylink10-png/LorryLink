@@ -67,3 +67,4 @@ export function UpdatePasswordForm() {
     </form>
   );
 }
+

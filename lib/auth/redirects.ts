@@ -29,3 +29,4 @@ export function getSafeRedirectPath(value: string | null | undefined, fallback =
     return fallback;
   }
 }
+

@@ -39,3 +39,4 @@ export function locationUploadErrorMessage(message: string) {
 
   return "Unable to send your current location. Lorry Link will retry with the next GPS update.";
 }
+

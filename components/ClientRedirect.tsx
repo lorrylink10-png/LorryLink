@@ -13,3 +13,4 @@ export function ClientRedirect({ href }: { href: string }) {
 
   return <PageLoading />;
 }
+

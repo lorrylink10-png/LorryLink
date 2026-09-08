@@ -18,3 +18,4 @@ export type TrackableOrderWithLorry = TrackableOrder & {
     "id" | "registration_number" | "vehicle_type" | "capacity_kg"
   > | null;
 };
+

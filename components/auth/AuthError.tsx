@@ -13,3 +13,4 @@ export function AuthError({ message }: AuthErrorProps) {
     </div>
   );
 }
+

@@ -59,3 +59,4 @@ export function BottomNavigation({ navType }: BottomNavigationProps) {
     </nav>
   );
 }
+

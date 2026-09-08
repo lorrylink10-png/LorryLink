@@ -11,14 +11,14 @@ export default function SplashPage() {
         <section className="flex flex-1 flex-col items-center justify-center gap-8 pb-8 pt-[calc(env(safe-area-inset-top)+24px)] text-center">
           <div className="flex flex-col items-center gap-5">
             <div className="relative h-28 w-36">
-              <Image
-                src="/logo.png"
-                alt="Lorry Link"
-                fill
-                className="object-contain"
-                priority
-                sizes="144px"
-              />
+             <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
+              alt="Lorry Link"
+              fill
+              className="object-contain"
+              priority
+              sizes="144px"
+            />
             </div>
             <div className="space-y-3">
               <h1 className="text-3xl font-bold leading-tight text-[var(--brand-navy)]">
@@ -60,3 +60,4 @@ export default function SplashPage() {
     </AuthGate>
   );
 }
+

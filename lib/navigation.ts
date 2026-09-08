@@ -31,3 +31,4 @@ export const driverNavItems: NavItem[] = [
   { label: "Tracking", href: "/driver/tracking", icon: Truck },
   { label: "Profile", href: "/driver/profile", icon: User },
 ];
+

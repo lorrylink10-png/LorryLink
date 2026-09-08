@@ -201,3 +201,4 @@ export function driverOrderErrorMessage(error: Pick<PostgrestError, "message"> |
 
   return "Something went wrong. Refresh and try again.";
 }
+

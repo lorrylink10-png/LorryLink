@@ -17,3 +17,4 @@ export function AppCard({ children, className, ...props }: AppCardProps) {
     </div>
   );
 }
+

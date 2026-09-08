@@ -35,3 +35,4 @@ export function LiveTrackingMap({ driverLocation, pickupLocation }: LiveTracking
 
   return <LeafletMap driverLocation={driverLocation} pickupLocation={pickupLocation} />;
 }
+

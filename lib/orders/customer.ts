@@ -122,3 +122,4 @@ export async function cancelPickupOrder(supabase: SupabaseClient<Database>, orde
     p_order_id: orderId,
   });
 }
+

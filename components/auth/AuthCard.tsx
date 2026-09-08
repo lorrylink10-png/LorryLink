@@ -13,12 +13,12 @@ export function AuthCard({ title, subtitle, children }: AuthCardProps) {
         <div className="mb-7 flex justify-center">
           <div className="relative h-20 w-32">
             <Image
-              src="/logo.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
               alt="Lorry Link"
               fill
               className="object-contain"
               priority
-              sizes="128px"
+              sizes="144px"
             />
           </div>
         </div>
@@ -36,3 +36,4 @@ export function AuthCard({ title, subtitle, children }: AuthCardProps) {
     </main>
   );
 }
+

@@ -86,3 +86,4 @@ export async function getUserDestination(
     destination: isDriverOnboardingComplete ? "/driver/discover" : "/onboarding/driver",
   };
 }
+

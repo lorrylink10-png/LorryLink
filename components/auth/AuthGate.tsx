@@ -14,7 +14,14 @@ type AuthGateProps = {
 function StartupScreen({ offline, onRetry }: { offline: boolean; onRetry: () => void }) {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-[430px] flex-col items-center justify-center bg-[var(--background)] px-6 text-center shadow-[0_0_60px_rgb(15_39_71_/_10%)]">
-      <Image src="/logo.png" alt="Lorry Link" width={150} height={60} priority className="h-auto w-40" />
+      <Image
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
+        alt="Lorry Link"
+        width={150}
+        height={60}
+        priority
+        className="mx-auto w-40"
+      />
       {offline ? (
         <>
           <h1 className="mt-8 text-xl font-bold text-[var(--brand-navy)]">You&apos;re offline</h1>
@@ -123,3 +130,4 @@ export function AuthGate({ children, mode }: AuthGateProps) {
   const allowed = auth.profile?.role === "driver" && auth.isDriverOnboardingComplete;
   return allowed ? children : <StartupScreen offline={false} onRetry={() => void auth.refreshAuth()} />;
 }
+
