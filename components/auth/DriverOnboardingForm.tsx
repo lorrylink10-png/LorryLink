@@ -63,20 +63,35 @@ export function DriverOnboardingForm({
     setLoading(true);
     const supabase = createSupabaseBrowserClient();
 
+    const { data: existingProfile, error: existingProfileError } = await supabase
+      .from("driver_profiles")
+      .select("user_id")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (existingProfileError) {
+      setLoading(false);
+      setError(authErrorMessage(existingProfileError.message));
+      return;
+    }
+
     const { data: existingLorries } = await supabase
       .from("lorries")
       .select("id")
       .eq("driver_id", userId)
       .limit(1);
 
-    const { error: profileError } = await supabase.from("driver_profiles").upsert(
-      {
-        user_id: userId,
-        driving_license_no: normalizedLicense,
-        address: address.trim() || null,
-      },
-      { onConflict: "user_id" },
-    );
+    const profilePayload = {
+      driving_license_no: normalizedLicense,
+      address: address.trim() || null,
+    };
+
+    const { error: profileError } = existingProfile
+      ? await supabase.from("driver_profiles").update(profilePayload).eq("user_id", userId)
+      : await supabase.from("driver_profiles").insert({
+          user_id: userId,
+          ...profilePayload,
+        });
 
     if (profileError) {
       setLoading(false);
