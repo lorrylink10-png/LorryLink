@@ -2,15 +2,24 @@
 
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Megaphone } from "lucide-react";
+import { CreateLoadAdForm } from "@/components/driver/CreateLoadAdForm";
 import { DiscoverPickups } from "@/components/driver/DiscoverPickups";
 import { DriverJobDetail } from "@/components/driver/DriverJobDetail";
 import { DriverJobsTabs } from "@/components/driver/DriverJobsTabs";
+import { DriverLoadAdsList } from "@/components/driver/DriverLoadAdsList";
 import { DriverPickupDetail } from "@/components/driver/DriverPickupDetail";
 import { DriverTrackingExperience } from "@/components/tracking/DriverTrackingExperience";
 import { PageError, PageLoading } from "@/components/pages/PageStates";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AppButton } from "@/components/ui/AppButton";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { useAuth } from "@/components/auth/AuthProvider";
+import {
+  getDriverLoadAds,
+  type DriverLoadAdWithLorry,
+} from "@/lib/ads/driver";
 import {
   getAvailableLorries,
   getDriverJob,
@@ -192,6 +201,119 @@ export function DriverJobsScreen() {
         action={<StatusBadge tone="active">{activeCount} active</StatusBadge>}
       />
       {loading ? <PageLoading /> : error ? <PageError message={error} onRetry={loadJobs} /> : <DriverJobsTabs jobs={jobs} />}
+    </div>
+  );
+}
+
+export function DriverLoadAdsScreen() {
+  const auth = useAuth();
+  const searchParams = useSearchParams();
+  const created = searchParams.get("created") === "1";
+  const [ads, setAds] = useState<DriverLoadAdWithLorry[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const loadAds = useCallback(async () => {
+    if (!auth.user) {
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const supabase = createSupabaseBrowserClient();
+      setAds(await getDriverLoadAds(supabase, auth.user.id));
+    } catch {
+      setError("Check your connection and try loading your load ads again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [auth.user]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void loadAds();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [loadAds]);
+
+  const activeCount = ads.filter((ad) => ad.status === "active").length;
+
+  return (
+    <div className="space-y-5">
+      <PageHeader
+        title="Load Ads"
+        description="Publish your lorry route and available capacity for customers."
+        action={<AppButton href="/driver/ads/create" size="sm">Post Ad</AppButton>}
+      />
+      {created ? (
+        <div className="rounded-lg border border-green-200 bg-green-50 px-3 py-3 text-sm font-semibold text-[var(--success)]">
+          Load ad published successfully.
+        </div>
+      ) : null}
+      <StatusBadge tone="active">{activeCount} active</StatusBadge>
+      {loading ? <PageLoading /> : error ? <PageError message={error} onRetry={loadAds} /> : <DriverLoadAdsList ads={ads} onRefresh={loadAds} />}
+    </div>
+  );
+}
+
+export function DriverCreateLoadAdScreen() {
+  const auth = useAuth();
+  const [lorries, setLorries] = useState<DriverLorry[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const loadLorries = useCallback(async () => {
+    if (!auth.user) {
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const supabase = createSupabaseBrowserClient();
+      setLorries(await getAvailableLorries(supabase, auth.user.id));
+    } catch {
+      setError("Check your connection and try loading your lorries again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [auth.user]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void loadLorries();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [loadLorries]);
+
+  return (
+    <div className="space-y-5">
+      <PageHeader
+        title="Post Load Ad"
+        description="Let customers know your lorry is available for loading."
+        backHref="/driver/ads"
+      />
+      {loading ? (
+        <PageLoading />
+      ) : error ? (
+        <PageError message={error} onRetry={loadLorries} />
+      ) : !auth.user ? (
+        <PageLoading />
+      ) : !lorries.length ? (
+        <EmptyState
+          icon={Megaphone}
+          title="No available lorry"
+          description="Add or free up a lorry before posting a load ad."
+          action={<AppButton href="/driver/profile">View Profile</AppButton>}
+        />
+      ) : (
+        <CreateLoadAdForm driverId={auth.user.id} lorries={lorries} />
+      )}
     </div>
   );
 }

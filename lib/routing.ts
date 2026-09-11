@@ -22,3 +22,7 @@ export function driverJobHref(orderId: string) {
   return `/driver/job?id=${encodeURIComponent(orderId)}`;
 }
 
+export function driverLoadAdsHref(created = false) {
+  return created ? "/driver/ads?created=1" : "/driver/ads";
+}
+

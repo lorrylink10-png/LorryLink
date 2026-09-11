@@ -1,5 +1,7 @@
 import type {
   DriverLocation,
+  DriverLoadAd,
+  DriverLoadAdStatus,
   DriverProfile,
   Lorry,
   LorryStatus,
@@ -92,6 +94,23 @@ type DbDriverLocation = {
   heading: number | null;
   speed: number | null;
   recorded_at: string;
+  updated_at: string;
+};
+
+type DbDriverLoadAd = {
+  id: string;
+  driver_id: string;
+  lorry_id: string | null;
+  from_pincode: string;
+  from_address: string;
+  to_pincode: string;
+  to_address: string;
+  available_date: string;
+  capacity_kg: number;
+  expected_rate: number | null;
+  notes: string | null;
+  status: DriverLoadAdStatus;
+  created_at: string;
   updated_at: string;
 };
 
@@ -190,6 +209,34 @@ export type Database = {
           recorded_at?: string;
         }
       >;
+      driver_load_ads: TableDefinition<
+        DbDriverLoadAd,
+        {
+          driver_id: string;
+          lorry_id?: string | null;
+          from_pincode: string;
+          from_address: string;
+          to_pincode: string;
+          to_address: string;
+          available_date: string;
+          capacity_kg: number;
+          expected_rate?: number | null;
+          notes?: string | null;
+          status?: DriverLoadAdStatus;
+        },
+        {
+          lorry_id?: string | null;
+          from_pincode?: string;
+          from_address?: string;
+          to_pincode?: string;
+          to_address?: string;
+          available_date?: string;
+          capacity_kg?: number;
+          expected_rate?: number | null;
+          notes?: string | null;
+          status?: DriverLoadAdStatus;
+        }
+      >;
     };
     Views: Record<string, never>;
     Functions: {
@@ -242,6 +289,8 @@ export type Database = {
 
 export type {
   DriverLocation,
+  DriverLoadAd,
+  DriverLoadAdStatus,
   DriverProfile,
   Lorry,
   LorryStatus,

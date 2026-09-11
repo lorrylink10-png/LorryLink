@@ -1,6 +1,7 @@
 import {
   BriefcaseBusiness,
   Home,
+  Megaphone,
   Map,
   Package,
   Plus,
@@ -28,6 +29,7 @@ export const customerNavItems: NavItem[] = [
 export const driverNavItems: NavItem[] = [
   { label: "Discover", href: "/driver/discover", icon: Search },
   { label: "My Jobs", href: "/driver/jobs", icon: BriefcaseBusiness },
+  { label: "Post", href: "/driver/ads/create", icon: Megaphone, prominent: true },
   { label: "Tracking", href: "/driver/tracking", icon: Truck },
   { label: "Profile", href: "/driver/profile", icon: User },
 ];

@@ -12,6 +12,8 @@ export type PickupStatus =
   | "delivered"
   | "cancelled";
 
+export type DriverLoadAdStatus = "active" | "closed";
+
 export type Profile = {
   id: string;
   fullName: string | null;
@@ -86,5 +88,22 @@ export type DriverLocation = {
   heading: number | null;
   speed: number | null;
   recordedAt: string;
+  updatedAt: string;
+};
+
+export type DriverLoadAd = {
+  id: string;
+  driverId: string;
+  lorryId: string | null;
+  fromPincode: string;
+  fromAddress: string;
+  toPincode: string;
+  toAddress: string;
+  availableDate: string;
+  capacityKg: number;
+  expectedRate: number | null;
+  notes: string | null;
+  status: DriverLoadAdStatus;
+  createdAt: string;
   updatedAt: string;
 };

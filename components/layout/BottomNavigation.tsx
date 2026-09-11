@@ -28,7 +28,8 @@ export function BottomNavigation({ navType }: BottomNavigationProps) {
             (item.href === "/customer/orders" && pathname === "/customer/order") ||
             (item.href === "/customer/tracking" && pathname === "/customer/tracking/live") ||
             (item.href === "/driver/discover" && pathname === "/driver/discover/details") ||
-            (item.href === "/driver/jobs" && pathname === "/driver/job");
+            (item.href === "/driver/jobs" && pathname === "/driver/job") ||
+            (item.href === "/driver/ads/create" && pathname.startsWith("/driver/ads"));
 
           return (
             <Link
