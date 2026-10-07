@@ -63,7 +63,7 @@ export function validateCreateDriverLoadAdForm(
   }
 
   if (!Number.isFinite(capacityKg) || capacityKg <= 0) {
-    return { ok: false, message: "Enter a valid available capacity." };
+    return { ok: false, message: "Enter a valid available capacity in tons." };
   }
 
   if (expectedRate !== null && (!Number.isFinite(expectedRate) || expectedRate < 0)) {

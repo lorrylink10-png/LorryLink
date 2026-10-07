@@ -125,7 +125,7 @@ export function CreateLoadAdForm({ driverId, lorries }: CreateLoadAdFormProps) {
         </FormField>
         {selectedLorry ? (
           <div className="rounded-lg bg-blue-50 px-3 py-3 text-sm font-semibold text-[var(--brand-blue)]">
-            Selected capacity: {Number(selectedLorry.capacity_kg).toLocaleString("en-IN")} kg
+            Selected capacity: {Number(selectedLorry.capacity_kg).toLocaleString("en-IN")} ton
           </div>
         ) : null}
       </AppCard>
@@ -186,7 +186,7 @@ export function CreateLoadAdForm({ driverId, lorries }: CreateLoadAdFormProps) {
             onChange={(event) => updateField("availableDate", event.target.value)}
           />
         </FormField>
-        <FormField label="Available Capacity (kg) *">
+        <FormField label="Available Capacity (ton) *">
           <span className="relative block">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">
               <Weight size={16} aria-hidden="true" />
@@ -194,12 +194,12 @@ export function CreateLoadAdForm({ driverId, lorries }: CreateLoadAdFormProps) {
             <AppInput
               type="number"
               inputMode="decimal"
-              min="1"
+              min="0"
               step="0.1"
               value={values.capacityKg}
               onChange={(event) => updateField("capacityKg", event.target.value)}
               className="pl-10"
-              placeholder="1200"
+              placeholder="4.5"
             />
           </span>
         </FormField>

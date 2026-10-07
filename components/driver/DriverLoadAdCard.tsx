@@ -6,7 +6,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppCard } from "@/components/ui/AppCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { closeDriverLoadAd, type DriverLoadAdWithLorry } from "@/lib/ads/driver";
-import { formatCurrency, formatPostedTime, formatWeight } from "@/lib/orders/format";
+import { formatCurrency, formatLorryDimensions, formatPostedTime, formatWeight } from "@/lib/orders/format";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type DriverLoadAdCardProps = {
@@ -83,6 +83,9 @@ export function DriverLoadAdCard({ ad, onClosed }: DriverLoadAdCardProps) {
             ? `${ad.lorry.registration_number} - ${ad.lorry.vehicle_type}`
             : "Any available lorry"}
         </span>
+        {ad.lorry ? (
+          <span>{formatLorryDimensions(ad.lorry.length_ft, ad.lorry.width_ft)}</span>
+        ) : null}
         {ad.expected_rate !== null ? (
           <span className="inline-flex items-center gap-1">
             <IndianRupee size={14} aria-hidden="true" />

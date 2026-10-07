@@ -5,7 +5,7 @@ import type { CreateDriverLoadAdPayload } from "@/lib/ads/validation";
 export type DriverLoadAd = Database["public"]["Tables"]["driver_load_ads"]["Row"];
 export type DriverLoadAdLorry = Pick<
   Database["public"]["Tables"]["lorries"]["Row"],
-  "id" | "registration_number" | "vehicle_type" | "capacity_kg"
+  "id" | "registration_number" | "vehicle_type" | "capacity_kg" | "length_ft" | "width_ft"
 >;
 
 export type DriverLoadAdWithLorry = DriverLoadAd & {
@@ -68,7 +68,7 @@ async function attachLorries(
 
   const { data, error } = await supabase
     .from("lorries")
-    .select("id, registration_number, vehicle_type, capacity_kg")
+    .select("id, registration_number, vehicle_type, capacity_kg, length_ft, width_ft")
     .in("id", lorryIds);
 
   if (error) {

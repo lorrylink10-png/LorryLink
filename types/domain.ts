@@ -42,6 +42,8 @@ export type Lorry = {
   vehicleName: string | null;
   vehicleType: string;
   capacityKg: number;
+  lengthFt: number | null;
+  widthFt: number | null;
   vehiclePhotoUrl: string | null;
   status: LorryStatus;
   createdAt: string;

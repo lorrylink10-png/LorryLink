@@ -94,7 +94,7 @@ export function validateCreatePickupForm(values: CreatePickupFormValues): Pickup
   }
 
   if (!Number.isFinite(weightKg) || weightKg <= 0) {
-    return { ok: false, message: "Enter a valid weight greater than 0 kg." };
+    return { ok: false, message: "Enter a valid weight greater than 0 ton." };
   }
 
   const length = toOptionalPositiveNumber(values.lengthCm, "Length");

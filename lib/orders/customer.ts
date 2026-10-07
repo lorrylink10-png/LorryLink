@@ -5,7 +5,7 @@ import type { CreatePickupPayload } from "@/lib/orders/validation";
 export type CustomerOrder = Database["public"]["Tables"]["pickup_orders"]["Row"];
 export type CustomerAssignedLorry = Pick<
   Database["public"]["Tables"]["lorries"]["Row"],
-  "id" | "registration_number" | "vehicle_type" | "capacity_kg"
+  "id" | "registration_number" | "vehicle_type" | "capacity_kg" | "length_ft" | "width_ft"
 >;
 
 export type CustomerOrderDetailData = {
@@ -81,7 +81,7 @@ export async function getCustomerOrderDetailData(
 
   const { data: assignedLorry, error } = await supabase
     .from("lorries")
-    .select("id, registration_number, vehicle_type, capacity_kg")
+    .select("id, registration_number, vehicle_type, capacity_kg, length_ft, width_ft")
     .eq("id", order.assigned_lorry_id)
     .maybeSingle();
 

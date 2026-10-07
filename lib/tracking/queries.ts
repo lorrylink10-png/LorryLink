@@ -104,7 +104,7 @@ async function attachAssignedLorries(
 
   const { data, error } = await supabase
     .from("lorries")
-    .select("id, registration_number, vehicle_type, capacity_kg")
+    .select("id, registration_number, vehicle_type, capacity_kg, length_ft, width_ft")
     .in("id", lorryIds);
 
   if (error) {

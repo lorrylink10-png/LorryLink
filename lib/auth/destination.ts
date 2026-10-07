@@ -9,7 +9,7 @@ export type AuthRoutingState = {
   user: User | null;
   profile: ProfileRow | null;
   driverProfile: DriverProfileRow | null;
-  firstLorry: Pick<LorryRow, "id" | "registration_number" | "vehicle_type" | "capacity_kg"> | null;
+  firstLorry: Pick<LorryRow, "id" | "registration_number" | "vehicle_type" | "capacity_kg" | "length_ft" | "width_ft"> | null;
   isDriverOnboardingComplete: boolean;
   destination: string;
 };
@@ -68,7 +68,7 @@ export async function getUserDestination(
       .maybeSingle(),
     supabase
       .from("lorries")
-      .select("id, registration_number, vehicle_type, capacity_kg")
+      .select("id, registration_number, vehicle_type, capacity_kg, length_ft, width_ft")
       .eq("driver_id", user.id)
       .limit(1),
   ]);

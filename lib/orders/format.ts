@@ -9,7 +9,7 @@ export function formatCurrency(value: number) {
 }
 
 export function formatWeight(value: number) {
-  return `${Number(value).toLocaleString("en-IN")} kg`;
+  return `${Number(value).toLocaleString("en-IN")} ton`;
 }
 
 export function formatDimensions(length: number | null, width: number | null, height: number | null) {
@@ -17,7 +17,17 @@ export function formatDimensions(length: number | null, width: number | null, he
     return "Not specified";
   }
 
-  const values = [length, width, height].map((value) => (value ? `${value} cm` : "-"));
+  const values = [length, width, height].map((value) => (value ? `${value} ft` : "-"));
+
+  return values.join(" x ");
+}
+
+export function formatLorryDimensions(length: number | null, width: number | null) {
+  if (!length && !width) {
+    return "Not specified";
+  }
+
+  const values = [length, width].map((value) => (value ? `${value} ft` : "-"));
 
   return values.join(" x ");
 }

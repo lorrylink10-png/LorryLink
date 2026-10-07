@@ -48,6 +48,8 @@ type DbLorry = {
   vehicle_name: string | null;
   vehicle_type: string;
   capacity_kg: number;
+  length_ft: number | null;
+  width_ft: number | null;
   vehicle_photo_url: string | null;
   status: LorryStatus;
   created_at: string;
@@ -156,6 +158,8 @@ export type Database = {
           vehicle_name?: string | null;
           vehicle_type: string;
           capacity_kg: number;
+          length_ft?: number | null;
+          width_ft?: number | null;
           vehicle_photo_url?: string | null;
         },
         {
@@ -163,6 +167,8 @@ export type Database = {
           vehicle_name?: string | null;
           vehicle_type?: string;
           capacity_kg?: number;
+          length_ft?: number | null;
+          width_ft?: number | null;
           vehicle_photo_url?: string | null;
         }
       >;

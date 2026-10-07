@@ -15,7 +15,7 @@ export type LocationPayload = {
 export type TrackableOrderWithLorry = TrackableOrder & {
   assignedLorry: Pick<
     Database["public"]["Tables"]["lorries"]["Row"],
-    "id" | "registration_number" | "vehicle_type" | "capacity_kg"
+    "id" | "registration_number" | "vehicle_type" | "capacity_kg" | "length_ft" | "width_ft"
   > | null;
 };
 

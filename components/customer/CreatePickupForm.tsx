@@ -229,7 +229,7 @@ export function CreatePickupForm({ customerId }: CreatePickupFormProps) {
             placeholder="Wooden dining table and six chairs. Handle carefully."
           />
         </FormField>
-        <FormField label="Weight *">
+        <FormField label="Weight (ton) *">
           <AppInput
             type="number"
             inputMode="decimal"
@@ -237,7 +237,7 @@ export function CreatePickupForm({ customerId }: CreatePickupFormProps) {
             step="0.1"
             value={values.weightKg}
             onChange={(event) => updateField("weightKg", event.target.value)}
-            placeholder="120.5"
+            placeholder="1.5"
           />
         </FormField>
         <div className="grid grid-cols-3 gap-2">
@@ -249,7 +249,7 @@ export function CreatePickupForm({ customerId }: CreatePickupFormProps) {
               step="0.1"
               value={values.lengthCm}
               onChange={(event) => updateField("lengthCm", event.target.value)}
-              placeholder="cm"
+              placeholder="ft"
             />
           </FormField>
           <FormField label="Width">
@@ -260,7 +260,7 @@ export function CreatePickupForm({ customerId }: CreatePickupFormProps) {
               step="0.1"
               value={values.widthCm}
               onChange={(event) => updateField("widthCm", event.target.value)}
-              placeholder="cm"
+              placeholder="ft"
             />
           </FormField>
           <FormField label="Height">
@@ -271,7 +271,7 @@ export function CreatePickupForm({ customerId }: CreatePickupFormProps) {
               step="0.1"
               value={values.heightCm}
               onChange={(event) => updateField("heightCm", event.target.value)}
-              placeholder="cm"
+              placeholder="ft"
             />
           </FormField>
         </div>

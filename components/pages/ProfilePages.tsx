@@ -4,6 +4,7 @@ import { LogoutButton } from "@/components/auth/LogoutButton";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { ProfileInfoCard } from "@/components/profile/ProfileInfoCard";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { formatLorryDimensions, formatWeight } from "@/lib/orders/format";
 
 export function CustomerProfileScreen() {
   const state = useAuth();
@@ -41,6 +42,8 @@ export function DriverProfileScreen() {
           { label: "Account Type", value: "Lorry Driver" },
           { label: "Driving Licence", value: state.driverProfile?.driving_license_no },
           { label: "Lorry", value: lorry ? `${lorry.registration_number} - ${lorry.vehicle_type}` : null },
+          { label: "Capacity", value: lorry ? formatWeight(lorry.capacity_kg) : null },
+          { label: "Deck Size", value: lorry ? formatLorryDimensions(lorry.length_ft, lorry.width_ft) : null },
         ]}
       />
       <LogoutButton />

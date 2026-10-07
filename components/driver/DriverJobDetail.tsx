@@ -7,6 +7,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import {
   formatCurrency,
   formatDimensions,
+  formatLorryDimensions,
   formatPostedTime,
   formatStatus,
   formatWeight,
@@ -163,6 +164,7 @@ export function DriverJobDetail({
             <DetailRow label="Registration" value={job.assignedLorry.registration_number} />
             <DetailRow label="Vehicle Type" value={job.assignedLorry.vehicle_type} />
             <DetailRow label="Capacity" value={formatWeight(job.assignedLorry.capacity_kg)} />
+            <DetailRow label="Deck Size" value={formatLorryDimensions(job.assignedLorry.length_ft, job.assignedLorry.width_ft)} />
           </>
         ) : (
           <p className="text-sm leading-6 text-[var(--text-secondary)]">Assigned lorry unavailable.</p>

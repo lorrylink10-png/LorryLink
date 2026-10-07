@@ -6,6 +6,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import {
   formatCurrency,
   formatDimensions,
+  formatLorryDimensions,
   formatPostedTime,
   formatStatus,
   formatWeight,
@@ -132,6 +133,7 @@ export function OrderDetail({ order, assignedLorry, created, cancelled }: OrderD
                 <DetailRow label="Lorry Registration" value={assignedLorry.registration_number} />
                 <DetailRow label="Vehicle Type" value={assignedLorry.vehicle_type} />
                 <DetailRow label="Capacity" value={formatWeight(assignedLorry.capacity_kg)} />
+                <DetailRow label="Deck Size" value={formatLorryDimensions(assignedLorry.length_ft, assignedLorry.width_ft)} />
               </div>
             ) : (
               <p className="text-sm leading-6 text-[var(--text-secondary)]">

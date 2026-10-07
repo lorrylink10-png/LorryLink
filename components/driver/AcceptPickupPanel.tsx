@@ -12,7 +12,7 @@ import {
   type DriverLorry,
   type DriverOrder,
 } from "@/lib/orders/driver";
-import { formatCurrency, formatWeight } from "@/lib/orders/format";
+import { formatCurrency, formatLorryDimensions, formatWeight } from "@/lib/orders/format";
 import { driverJobHref } from "@/lib/routing";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -156,6 +156,9 @@ export function AcceptPickupPanel({ order, lorries }: AcceptPickupPanelProps) {
                 </span>
                 <span className="mt-1 block text-xs font-semibold text-[var(--text-secondary)]">
                   {lorry.vehicle_type} - {formatWeight(lorry.capacity_kg)}
+                </span>
+                <span className="mt-1 block text-xs font-semibold text-[var(--text-secondary)]">
+                  {formatLorryDimensions(lorry.length_ft, lorry.width_ft)}
                 </span>
               </span>
             </button>

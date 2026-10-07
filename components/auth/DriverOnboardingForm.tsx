@@ -39,6 +39,8 @@ export function DriverOnboardingForm({
   const [vehicleName, setVehicleName] = useState("");
   const [vehicleType, setVehicleType] = useState("");
   const [capacityKg, setCapacityKg] = useState("");
+  const [lengthFt, setLengthFt] = useState("");
+  const [widthFt, setWidthFt] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,14 +51,21 @@ export function DriverOnboardingForm({
     const normalizedLicense = license.trim().toUpperCase();
     const normalizedRegistration = registrationNumber.trim().toUpperCase().replace(/\s+/g, "");
     const capacity = Number(capacityKg);
+    const length = Number(lengthFt);
+    const width = Number(widthFt);
 
-    if (!normalizedLicense || !normalizedRegistration || !vehicleType || !capacityKg) {
+    if (!normalizedLicense || !normalizedRegistration || !vehicleType || !capacityKg || !lengthFt || !widthFt) {
       setError("Complete all required driver and lorry fields.");
       return;
     }
 
     if (!Number.isFinite(capacity) || capacity <= 0) {
       setError("Enter a valid maximum capacity.");
+      return;
+    }
+
+    if (!Number.isFinite(length) || length <= 0 || !Number.isFinite(width) || width <= 0) {
+      setError("Enter valid lorry length and width in feet.");
       return;
     }
 
@@ -111,6 +120,8 @@ export function DriverOnboardingForm({
       vehicle_name: vehicleName.trim() || null,
       vehicle_type: vehicleType,
       capacity_kg: capacity,
+      length_ft: length,
+      width_ft: width,
     });
 
     if (lorryError) {
@@ -162,15 +173,40 @@ export function DriverOnboardingForm({
             ))}
           </AppSelect>
         </FormField>
-        <FormField label="Maximum Capacity (kg) *">
+        <FormField label="Maximum Capacity (ton) *">
           <AppInput
             type="number"
-            min="1"
+            min="0"
+            step="0.1"
             inputMode="decimal"
             value={capacityKg}
             onChange={(event) => setCapacityKg(event.target.value)}
           />
         </FormField>
+        <div className="grid grid-cols-2 gap-3">
+          <FormField label="Length (ft) *">
+            <AppInput
+              type="number"
+              min="0"
+              step="0.1"
+              inputMode="decimal"
+              value={lengthFt}
+              onChange={(event) => setLengthFt(event.target.value)}
+              placeholder="20"
+            />
+          </FormField>
+          <FormField label="Width (ft) *">
+            <AppInput
+              type="number"
+              min="0"
+              step="0.1"
+              inputMode="decimal"
+              value={widthFt}
+              onChange={(event) => setWidthFt(event.target.value)}
+              placeholder="8"
+            />
+          </FormField>
+        </div>
       </AppCard>
 
       <AppButton type="submit" className="w-full" disabled={loading}>
